@@ -86,7 +86,7 @@
       const out = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(out.error || 'Something went wrong.');
       form.reset();
-      status.textContent = "Got it! Jeff's team will reach out soon. Need it faster? Call (207) 815-9506.";
+      status.textContent = "Bless up! Jeff's team will reach out soon. Need it faster? Call (207) 815-9506.";
       status.classList.add('ok');
     } catch (err) {
       status.textContent = err.message + ' You can also call (207) 815-9506.';

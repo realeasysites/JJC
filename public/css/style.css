@@ -374,3 +374,141 @@ p { margin: 0 0 1em; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* =========================================================
+   JAMAICAN FLAIR LAYER — flags, bunting, patterns, color
+   ========================================================= */
+:root {
+  --flag-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 6'%3E%3Crect width='12' height='6' fill='%23009B3A'/%3E%3Cpath d='M0 0 6 3 0 6zM12 0 6 3 12 6z' fill='%23000'/%3E%3Cpath d='M0 0 12 6M0 6 12 0' stroke='%23FED100' stroke-width='1'/%3E%3C/svg%3E");
+  --saltire: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'%3E%3Cpath d='M0 0 100 50M0 50 100 0' stroke='%23FED100' stroke-width='7'/%3E%3C/svg%3E");
+}
+
+/* mini inline flag (marquee, footer, hours) */
+.mini-flag { width: 1.6em; height: .8em; vertical-align: -.05em; border-radius: 2px; box-shadow: 0 0 0 1.5px rgba(0,0,0,.35); display: inline-block; }
+
+/* flag bands replace the plain stripe */
+.flag-stripe { height: 12px; background: var(--flag-tile) repeat-x; background-size: 24px 12px; }
+.site-footer .flag-stripe { height: 16px; background-size: 32px 16px; }
+
+/* eyebrow marker = tiny flag */
+.eyebrow::before, .eyebrow-light::before, .eyebrow-gold::before { width: 28px; height: 14px; border-radius: 2px; background: var(--flag-tile) center / cover; box-shadow: 0 0 0 1.5px rgba(0,0,0,.25); }
+
+/* Patois greeting — hand-lettered feel */
+.greeting { font-family: var(--display); font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--black); background: var(--gold); display: table; padding: .35rem 1rem .45rem; border-radius: 10px; transform: rotate(-3deg); margin: 0 0 1.1rem; box-shadow: 5px 5px 0 var(--green); }
+.greeting-center { display: table; margin: 0 auto 2rem; }
+.jam-word { background: linear-gradient(transparent 62%, rgba(0,155,58,.75) 62%, rgba(0,155,58,.75) 90%, transparent 90%); padding: 0 .1em; }
+.motto { font-weight: 800; color: var(--green-dk); font-style: italic; margin: -.4rem 0 1rem; }
+.motto small { font-weight: 500; color: var(--muted); font-style: normal; }
+
+/* ---------- Bunting (fair-style flag string) ---------- */
+.bunting { position: absolute; left: 0; right: 0; top: 0; height: 46px; z-index: 2; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='46' viewBox='0 0 120 46'%3E%3Cpath d='M0 4 Q60 22 120 4' fill='none' stroke='%23e9e2cf' stroke-width='1.5'/%3E%3Cpath d='M8 7 L32 9 L19 34Z' fill='%23009B3A'/%3E%3Cg transform='translate(44 11) rotate(2)'%3E%3Crect width='32' height='16' fill='%23009B3A'/%3E%3Cpath d='M0 0 16 8 0 16zM32 0 16 8 32 16z' fill='%23000'/%3E%3Cpath d='M0 0 32 16M0 16 32 0' stroke='%23FED100' stroke-width='2.7'/%3E%3C/g%3E%3Cpath d='M88 9 L112 7 L101 34Z' fill='%23FED100'/%3E%3C/svg%3E") repeat-x;
+  background-size: 120px 46px; animation: buntingSway 6s ease-in-out infinite alternate; transform-origin: top center; }
+@keyframes buntingSway { from { transform: translateY(0) skewX(-1deg); } to { transform: translateY(2px) skewX(1deg); } }
+.gallery-section, .hero { position: relative; }
+
+/* ---------- Waving flag in hero ---------- */
+.hero-flag { position: absolute; right: 6%; top: 90px; width: 230px; z-index: 2; display: none; filter: drop-shadow(0 18px 28px rgba(0,0,0,.55)); }
+.hero-flag .pole { position: absolute; left: -10px; top: -14px; width: 7px; height: 330px; border-radius: 4px; background: linear-gradient(90deg, #8d8d8d, #f2f2f2 45%, #7a7a7a); }
+.hero-flag .pole::before { content: ''; position: absolute; top: -10px; left: -5px; width: 17px; height: 17px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff2a8, var(--gold) 55%, #b48f00); }
+.hero-flag img { width: 100%; display: block; border-radius: 2px; transform-origin: left center; animation: flagWave 3.2s ease-in-out infinite; -webkit-mask-image: linear-gradient(90deg, #000 0 100%); }
+.hero-flag::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 10%, rgba(255,255,255,.22) 28%, transparent 40%, rgba(0,0,0,.22) 58%, transparent 72%, rgba(255,255,255,.16) 86%, transparent); background-size: 200% 100%; animation: flagShine 3.2s linear infinite; pointer-events: none; }
+@keyframes flagWave { 0%,100% { transform: perspective(500px) rotateY(-10deg) skewY(-2deg); } 50% { transform: perspective(500px) rotateY(8deg) skewY(2.5deg); } }
+@keyframes flagShine { from { background-position: 200% 0; } to { background-position: 0 0; } }
+@media (min-width: 1100px) { .hero-flag { display: block; } }
+
+/* hero proof row gets flag-colored top edge */
+.proof-row { border-top: 4px solid var(--gold); }
+.proof-row li:nth-child(1) strong { color: var(--gold); }
+.proof-row li:nth-child(2) strong { color: #3fd27a; }
+.proof-row li:nth-child(3) strong { color: #fff; }
+
+/* ---------- Marquee: black & gold with green rails, flags between items ---------- */
+.marquee { background: var(--black); color: var(--gold); border-block: 5px solid var(--green); }
+.marquee i { display: inline-flex; align-items: center; }
+.marquee .mini-flag { width: 2.2em; height: 1.1em; box-shadow: 0 0 0 2px var(--gold); }
+
+/* ---------- Menu: saltire watermark + flag-edged cards ---------- */
+.menu-section { position: relative; overflow: hidden; background:
+  radial-gradient(ellipse at 100% 0%, rgba(254,209,0,.28), transparent 55%),
+  radial-gradient(ellipse at 0% 100%, rgba(0,155,58,.18), transparent 55%), var(--cream); }
+.menu-section::before { content: ''; position: absolute; inset: 0; background: var(--saltire) center / 100% 100% no-repeat; opacity: .16; pointer-events: none; }
+.menu-section > .wrap { position: relative; }
+.dish { border-bottom: 6px solid var(--green); }
+.dish:nth-child(3) { border-bottom-color: var(--gold); }
+.dish:nth-child(4) { border-bottom-color: var(--black); }
+.dish-feature { border-bottom: 0; background: linear-gradient(135deg, var(--black) 55%, #062b14); }
+.dish-feature .dish-body { background: radial-gradient(circle at 100% 100%, rgba(0,155,58,.35), transparent 60%); }
+.menu-list { border: 3px solid var(--green); }
+.menu-list li strong::before { content: ''; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 2px var(--green); margin-right: .6rem; vertical-align: .1em; }
+.sauce-row strong::before { display: none !important; }
+
+/* ---------- Spotlight: sunburst behind the badge ---------- */
+.spotlight-badge { position: relative; z-index: 0; }
+.spotlight-badge::before { content: ''; position: absolute; inset: -70px; z-index: -1; border-radius: 50%; background: repeating-conic-gradient(rgba(254,209,0,.28) 0 8deg, transparent 8deg 20deg); animation: spin 40s linear infinite; -webkit-mask-image: radial-gradient(circle, #000 40%, transparent 70%); mask-image: radial-gradient(circle, #000 40%, transparent 70%); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spotlight { border-top: 6px solid var(--gold); border-bottom: 6px solid var(--gold); }
+
+/* ---------- Find section ---------- */
+.hours-card { border-top: 0; position: relative; overflow: hidden; padding-top: 2rem; }
+.hours-card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 10px; background: var(--flag-tile) repeat-x; background-size: 20px 10px; }
+.hours-head h3 { display: flex; align-items: center; gap: .5rem; }
+.map-frame { border-color: var(--gold); border-width: 6px; }
+
+/* ---------- On the road: green with flag corners ---------- */
+.road-section { background:
+  linear-gradient(135deg, transparent 0 46%, rgba(254,209,0,.07) 46% 54%, transparent 54%),
+  linear-gradient(45deg, transparent 0 46%, rgba(254,209,0,.07) 46% 54%, transparent 54%),
+  linear-gradient(160deg, #04351a, #0b0b0b 60%); }
+.stop-list li { background: rgba(255,255,255,.05); border-color: rgba(254,209,0,.18); }
+
+/* ---------- Story: flag behind the photo ---------- */
+.story-photo::before { background: var(--flag-tile) center / cover; inset: 22px -22px -22px 22px; box-shadow: 0 0 0 4px var(--black); }
+
+/* ---------- Reviews: full flag backdrop ---------- */
+.reviews-section { position: relative; background: linear-gradient(rgba(8,8,8,.74), rgba(8,8,8,.8)), url('/images/jamaica-flag.svg') center / cover; color: #fff; }
+.reviews-section .big-num { color: var(--gold); text-shadow: 4px 4px 0 var(--green); }
+.reviews-section .big-label small { color: #d8d2c0; }
+.reviews-section .btn-ghost { color: #fff; border-color: var(--gold); }
+.reviews-section .btn-ghost:hover { background: var(--gold); color: var(--black); }
+.quote { border-top: 6px solid var(--green); }
+.quote-gold { background: var(--gold); color: var(--black); border-top-color: var(--black); }
+.quote-gold::before { color: var(--black); }
+.quote-gold footer { color: #3a3300; }
+
+/* ---------- Gallery: framed tiles ---------- */
+.gallery-section { padding-top: clamp(5rem, 10vw, 8rem); background: radial-gradient(ellipse at 50% 0%, rgba(0,155,58,.25), transparent 60%), var(--black); }
+.gallery figure { border: 3px solid transparent; transition: border-color .2s; }
+.gallery figure:nth-child(3n+1):hover { border-color: var(--gold); }
+.gallery figure:nth-child(3n+2):hover { border-color: var(--green); }
+.gallery figure:nth-child(3n):hover { border-color: #fff; }
+
+/* ---------- Catering: soft saltire ---------- */
+.events-section { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--cream), #fdf0c4); }
+.events-section::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'%3E%3Cpath d='M0 0 100 50M0 50 100 0' stroke='%23009B3A' stroke-width='5'/%3E%3C/svg%3E") center / 100% 100% no-repeat; opacity: .08; pointer-events: none; }
+.events-section > .wrap { position: relative; }
+.booking-form { border-top: 0; position: relative; overflow: hidden; padding-top: calc(clamp(1.4rem, 3vw, 2.2rem) + 10px); }
+.booking-form::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 12px; background: var(--flag-tile) repeat-x; background-size: 24px 12px; }
+
+/* ---------- Follow: green with gold saltire ---------- */
+.follow-section::before { content: ''; position: absolute; inset: 0; background: var(--saltire) center / 100% 100% no-repeat; opacity: .14; }
+
+/* ---------- Footer ---------- */
+.one-love { display: inline-flex; align-items: center; gap: .5rem; color: var(--gold); font-weight: 700; }
+
+/* ---------- Mobile bar ---------- */
+@media (max-width: 760px) {
+  .mobile-bar { border-top: 0; }
+  .mobile-bar::before { content: ''; position: absolute; left: 0; right: 0; top: -8px; height: 8px; background: var(--flag-tile) repeat-x; background-size: 16px 8px; }
+  .greeting { font-size: 1.05rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bunting, .hero-flag img, .hero-flag::after, .spotlight-badge::before { animation: none !important; }
+}
+.spotlight, .story-section { overflow: hidden; }
+.reviews-section .quote { color: var(--ink); }
+.flag-stripe { height: 14px; background-size: 28px 14px; }
+.hours-card::before, .booking-form::before { height: 14px; background-size: 28px 14px; }
+.hours-card { padding-top: 2.2rem; }
+.gallery-section { overflow: hidden; }
