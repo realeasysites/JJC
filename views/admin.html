@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Dashboard · Jeff's Jamaican Cuisine</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <header class="admin-top">
+    <div>
+      <strong>Jeff's Jamaican Cuisine</strong>
+      <span class="muted">· Requests dashboard</span>
+    </div>
+    <form method="post" action="/admin/logout"><button class="ghost">Log out</button></form>
+  </header>
+
+  <main class="admin-main">
+    <nav class="status-tabs" id="tabs">
+      <button data-status="" class="active">All <b id="c-all">0</b></button>
+      <button data-status="new">New <b id="c-new">0</b></button>
+      <button data-status="contacted">Contacted <b id="c-contacted">0</b></button>
+      <button data-status="booked">Booked <b id="c-booked">0</b></button>
+      <button data-status="completed">Completed <b id="c-completed">0</b></button>
+      <button data-status="declined">Declined <b id="c-declined">0</b></button>
+    </nav>
+
+    <p class="empty" id="empty" hidden>No requests here yet.</p>
+    <div class="cards" id="cards"></div>
+  </main>
+
+  <template id="cardTpl">
+    <article class="card">
+      <div class="card-head">
+        <div>
+          <h3 class="c-name"></h3>
+          <p class="c-service"></p>
+        </div>
+        <select class="c-status">
+          <option value="new">New</option>
+          <option value="contacted">Contacted</option>
+          <option value="booked">Booked</option>
+          <option value="completed">Completed</option>
+          <option value="declined">Declined</option>
+        </select>
+      </div>
+      <dl class="c-meta"></dl>
+      <p class="c-message"></p>
+      <label class="notes-label">Notes
+        <textarea class="c-notes" rows="2" placeholder="Quote sent, deposit, menu picked…"></textarea>
+      </label>
+      <div class="card-actions">
+        <a class="c-call btn">Call</a>
+        <a class="c-email btn ghost">Email</a>
+        <button class="c-save btn ghost">Save notes</button>
+        <button class="c-del btn danger">Delete</button>
+      </div>
+      <p class="c-date muted"></p>
+    </article>
+  </template>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+:root { --black:#121212; --green:#00873e; --gold:#fed100; --red:#d7261e; --bg:#f6f3ea; --line:#e2dccb; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--black); }
+.muted { color:#6b6658; }
+button, .btn { font: inherit; cursor: pointer; border: 0; border-radius: 10px; padding: .55rem .95rem; background: var(--green); color: #fff; text-decoration: none; display: inline-block; font-weight: 600; }
+.ghost { background: transparent; color: var(--black); border: 1.5px solid var(--line); }
+.danger { background: transparent; color: var(--red); border: 1.5px solid #f0c6c3; }
+
+.login-body { min-height: 100vh; display: grid; place-items: center; background: var(--black); padding: 16px; }
+.login-card { background: #fff; padding: 2rem; border-radius: 18px; width: 100%; max-width: 360px; display: grid; gap: .9rem; }
+.login-card h1 { margin: .2rem 0 0; }
+.login-card p { margin: 0; }
+.login-card label { display: grid; gap: .3rem; font-weight: 600; font-size: .9rem; }
+.login-card input { padding: .7rem; border: 1.5px solid var(--line); border-radius: 10px; font: inherit; }
+.login-error { color: var(--red); font-weight: 600; }
+.login-flag { display: flex; height: 6px; border-radius: 3px; overflow: hidden; }
+.login-flag span { flex: 1; } .login-flag span:nth-child(1){background:var(--green)} .login-flag span:nth-child(2){background:var(--gold)} .login-flag span:nth-child(3){background:var(--black)}
+
+.admin-top { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; background: var(--black); color: #fff; border-bottom: 4px solid var(--gold); }
+.admin-top .muted { color: #b9b4a5; }
+.admin-top .ghost { color: #fff; border-color: #444; }
+.admin-main { max-width: 1100px; margin: 0 auto; padding: 1.25rem 16px 3rem; }
+.status-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.status-tabs button { background: #fff; color: var(--black); border: 1.5px solid var(--line); }
+.status-tabs button.active { background: var(--black); color: #fff; border-color: var(--black); }
+.status-tabs b { background: var(--gold); color: var(--black); border-radius: 99px; padding: 0 .45rem; margin-left: .3rem; font-size: .8rem; }
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+.card { background: #fff; border-radius: 16px; padding: 1.1rem; border-left: 6px solid var(--gold); display: grid; gap: .6rem; }
+.card[data-status="booked"] { border-left-color: var(--green); }
+.card[data-status="completed"] { border-left-color: #8a8577; }
+.card[data-status="declined"] { border-left-color: var(--red); opacity: .8; }
+.card-head { display: flex; justify-content: space-between; gap: .75rem; align-items: start; }
+.card h3 { margin: 0; }
+.c-service { margin: .15rem 0 0; color: var(--green); font-weight: 700; font-size: .9rem; }
+.c-status { padding: .4rem; border-radius: 8px; border: 1.5px solid var(--line); font: inherit; }
+.c-meta { display: grid; grid-template-columns: auto 1fr; gap: .2rem .8rem; margin: 0; font-size: .92rem; }
+.c-meta dt { color: #6b6658; } .c-meta dd { margin: 0; word-break: break-word; }
+.c-message { margin: 0; white-space: pre-wrap; background: var(--bg); padding: .6rem .75rem; border-radius: 10px; }
+.c-message:empty { display: none; }
+.notes-label { display: grid; gap: .3rem; font-size: .85rem; font-weight: 600; }
+.c-notes { font: inherit; padding: .5rem; border-radius: 8px; border: 1.5px solid var(--line); resize: vertical; }
+.card-actions { display: flex; gap: .4rem; flex-wrap: wrap; }
+.c-date { margin: 0; font-size: .8rem; }
+.empty { text-align: center; padding: 3rem 0; color: #6b6658; }
