@@ -46,7 +46,17 @@ app.use(session({
 app.use('/api/booking', bookingRoutes);
 app.use('/admin', adminRoutes);
 
-app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'], maxAge: '7d' }));
+// Homepage: fill in absolute URLs for social-share previews (Facebook/iMessage need full URLs).
+// Uses SITE_URL if set, otherwise the domain the visitor came in on — works on any domain automatically.
+const fs = require('fs');
+const INDEX_HTML = fs.readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf8');
+function sendHome(req, res) {
+  const base = (process.env.SITE_URL || `${req.protocol}://${req.get('host')}`).replace(/\/$/, '');
+  res.type('html').send(INDEX_HTML.replaceAll('{{SITE_URL}}', base));
+}
+app.get(['/', '/index.html'], sendHome);
+
+app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'], maxAge: '7d', index: false }));
 
 app.get('/healthz', (_req, res) => res.json({ ok: true }));
 
