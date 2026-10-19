@@ -46,4 +46,4 @@ licensed track). Popular commercial songs (e.g., Bob Marley) require licenses fr
 publisher — playing them on a business site without one can bring takedowns or claims.
 
 ## Admin dashboard
-`/admin` → log in with ADMIN_USER / ADMIN_PASSWORD. **Change the default password before launch.**
+`/admin` → log in with ADMIN_PASSWORD (password only, no username). **Change the default password before launch.**
